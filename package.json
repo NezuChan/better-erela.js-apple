@@ -1,0 +1,25 @@
+{
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "erela.js": "^2.3.3",
+    "petitio": "^1.4.0"
+  },
+  "scripts": {
+    "compile": "rimraf dist && tsc"
+  },
+  "author": {
+    "name": "KagChi"
+  },
+  "repository": {
+    "url": "https://github.com/NezuChan/better-erela.js-apple"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "name": "better-erela.js-apple",
+  "version": "0.1.0",
+  "description": "A better version of erela.js-apple plugin"
+}
