@@ -47,7 +47,7 @@ export class AppleMusic extends Plugin {
                 return resolver.buildSearch(e.loadType ?? "LOAD_FAILED", [], e.message ?? null, null);
             }
         }
-        return this.search(query, options);
+        return this.search(query, requester);
     }
 
     private async getAlbum(url: string) {
