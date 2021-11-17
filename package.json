@@ -20,6 +20,7 @@
   },
   "license": "SEE LICENSE IN LICENSE",
   "name": "better-erela.js-apple",
+  "main": "./dist",
   "version": "0.1.0",
   "description": "A better version of erela.js-apple plugin"
 }
