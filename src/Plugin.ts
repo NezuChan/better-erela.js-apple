@@ -27,27 +27,31 @@ export class AppleMusic extends Plugin {
     private async search(query: string | SearchQuery, requester?: unknown): Promise<SearchResult> {
         const finalQuery = (query as SearchQuery).query || query as string;
         const [url, type] = this.regex.exec(finalQuery) ?? [];
+        
         if (type in this.functions) {
             try {
-                const func = this.functions[type as keyof AppleMusic["functions"]];
-                if(func) {
-                    //@ts-expect-error type mabok
+                const func = this.functions[type as keyof AppleMusic['functions']];
+
+                if (func) {
+                    //@ts-expect-error
                     const searchTrack: Result = await func(url);
                     const loadType = type === "music-video" ? "TRACK_LOADED" : "PLAYLIST_LOADED";
                     const name = ["artist", "album", "playlist"].includes(type) ? searchTrack.name : null;
-                    const tracks = searchTrack.tracks.map(x => TrackUtils.buildUnresolved(x, requester));
+                    const tracks = searchTrack.tracks.map(async query => {
+                        return TrackUtils.buildUnresolved(query, requester);
+                    }).filter(track => !!track);
                     //@ts-expect-error type mabok
                     return AppleMusic.buildSearch(loadType, tracks, null, name);
                 }
-                const msg = "Incorrect type for Apple Music URL, must be one of \"music-video\", \"album\", \"artist\", or \"playlist\".";
+                const msg = "Incorrect type for AppleMusic URL, must be one of \"music-video\", \"album\", \"artist\", or \"playlist\".";
                 //@ts-expect-error type mabok
-                return resolver.buildSearch("LOAD_FAILED", [], msg, null);
+                return AppleMusic.buildSearch("LOAD_FAILED", [], msg, null);
             } catch (e) {
                 //@ts-expect-error type mabok
-                return resolver.buildSearch(e.loadType ?? "LOAD_FAILED", [], e.message ?? null, null);
+                return AppleMusic.buildSearch(e.loadType ?? "LOAD_FAILED", [], e.message ?? null, null);
             }
         }
-        return this.search(query, requester);
+        return this._search(query, requester);
     }
 
     private async getAlbum(url: string) {
