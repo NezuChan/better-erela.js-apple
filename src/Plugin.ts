@@ -1,4 +1,3 @@
-import options from "cheerio/lib/options";
 import { LoadType, Manager, Plugin, SearchQuery, TrackUtils, SearchResult, UnresolvedTrack } from "erela.js";
 import { Result } from "./types";
 import fetch from 'petitio';
