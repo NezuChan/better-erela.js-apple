@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppleMusic = void 0;
-const options_1 = __importDefault(require("cheerio/lib/options"));
 const erela_js_1 = require("erela.js");
 const petitio_1 = __importDefault(require("petitio"));
 const cheerio_1 = __importDefault(require("cheerio"));
@@ -48,7 +47,7 @@ class AppleMusic extends erela_js_1.Plugin {
                 return resolver.buildSearch(e.loadType ?? "LOAD_FAILED", [], e.message ?? null, null);
             }
         }
-        return this.search(query, options_1.default);
+        return this.search(query, requester);
     }
     async getAlbum(url) {
         const html = await (0, petitio_1.default)(url).text();
