@@ -37,9 +37,7 @@ export class AppleMusic extends Plugin {
                     const searchTrack: Result = await func(url);
                     const loadType = type === "music-video" ? "TRACK_LOADED" : "PLAYLIST_LOADED";
                     const name = ["artist", "album", "playlist"].includes(type) ? searchTrack.name : null;
-                    const tracks = searchTrack.tracks.map(async query => {
-                        return TrackUtils.buildUnresolved(query, requester);
-                    }).filter(track => !!track);
+                    const tracks = searchTrack.tracks.map(x => TrackUtils.buildUnresolved(x, requester))
                     //@ts-expect-error type mabok
                     return AppleMusic.buildSearch(loadType, tracks, null, name);
                 }
