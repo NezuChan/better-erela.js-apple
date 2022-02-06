@@ -3,7 +3,7 @@ import { fetch } from "undici";
 import cheerio from "cheerio";
 import { AppleMusicMetaTagResponse } from "./types";
 
-import { MusicVideoManager, PlaylistManager, AlbumManager } from "./Manager/index";
+import { MusicVideoManager, PlaylistManager, AlbumManager, ArtistManager } from "./Manager/index";
 
 export class resolver {
     public constructor(public plugin: AppleMusic) { }
@@ -12,6 +12,7 @@ export class resolver {
         "music-video": new MusicVideoManager(this),
         playlist: new PlaylistManager(this),
         album: new AlbumManager(this),
+        artist: new ArtistManager(this)
     };
 
     public async fetchAccessToken() {
