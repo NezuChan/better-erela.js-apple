@@ -18,7 +18,7 @@ jobs:
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
       - name: Compile source
-        run: yarn build
+        run: yarn compile
       - name: Publish source
         run: |
           npm publish --access public || true
