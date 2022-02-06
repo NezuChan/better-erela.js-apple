@@ -14,13 +14,13 @@
         "resolveJsonModule": true,
         "typeRoots": [
             "node_modules/@types",
-            "src/typings"
+            "src/types"
         ],
         "rootDir": "src",
         "outDir": "dist"
     },
     "include": [
-        "src",
+        "src/**.ts",
     ],
     "exclude": [
         "node_modules",

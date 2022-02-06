@@ -1,16 +1,14 @@
-import { LoadType, Manager, Plugin, SearchResult, UnresolvedTrack } from "erela.js";
+import { Manager, Plugin } from 'erela.js';
+import { AppleMusicOptions } from './types';
+import { resolver } from './resolver';
 export declare class AppleMusic extends Plugin {
-    manager: Manager;
-    regex: RegExp;
+    options: AppleMusicOptions;
+    constructor(options?: AppleMusicOptions);
+    readonly resolver: resolver;
+    manager: Manager | undefined;
+    appleMusicMatch: RegExp;
     private _search;
-    private readonly functions;
-    load(manager: Manager): void;
+    load(manager: Manager): Promise<void>;
     private search;
-    private getAlbum;
-    private getArtist;
-    private getPlaylist;
-    private getTrack;
-    private static convertToUnresolved;
-    static buildSearch(loadType: LoadType, tracks: UnresolvedTrack[], error: string, name: string): SearchResult;
 }
 //# sourceMappingURL=Plugin.d.ts.map
