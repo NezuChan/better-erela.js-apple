@@ -1,6 +1,6 @@
-import { Manager, Plugin } from "erela.js";
-import { AppleMusicOptions } from "./types";
-import { resolver } from "./resolver";
+import { Manager, Plugin } from 'erela.js';
+import { AppleMusicOptions } from './types';
+import { resolver } from './resolver';
 export declare class AppleMusic extends Plugin {
     options: AppleMusicOptions;
     constructor(options?: AppleMusicOptions);

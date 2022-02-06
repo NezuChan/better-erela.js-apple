@@ -12,7 +12,7 @@ class resolver {
         this.plugin = plugin;
         this.token = undefined;
         this.resolveManager = {
-            "music-video": new index_1.MusicVideoManager(this),
+            'music-video': new index_1.MusicVideoManager(this),
             playlist: new index_1.PlaylistManager(this),
             album: new index_1.AlbumManager(this),
             artist: new index_1.ArtistManager(this)
@@ -20,14 +20,14 @@ class resolver {
     }
     async fetchAccessToken() {
         try {
-            const response = await (0, undici_1.fetch)("https://music.apple.com/");
+            const response = await (0, undici_1.fetch)('https://music.apple.com/');
             const textResponse = await response.text();
             const $ = cheerio_1.default.load(textResponse);
-            const token = JSON.parse(decodeURIComponent($("meta[name=desktop-music-app/config/environment]").attr("content")));
+            const token = JSON.parse(decodeURIComponent($('meta[name=desktop-music-app/config/environment]').attr('content')));
             this.token = token.MEDIA_API.token;
         }
         catch (_e) {
-            /* Do nothing.*/
+            /* Do nothing. */
         }
     }
 }

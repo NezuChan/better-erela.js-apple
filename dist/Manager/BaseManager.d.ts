@@ -1,6 +1,6 @@
-import { LoadType, SearchResult, UnresolvedTrack } from "erela.js";
-import { resolver } from "../resolver";
-import { AppleMusicTrack } from "../types";
+import { LoadType, SearchResult, UnresolvedTrack } from 'erela.js';
+import { resolver } from '../resolver';
+import { AppleMusicTrack } from '../types';
 export declare abstract class BaseManager {
     resolver: resolver;
     cache: Map<string, {
@@ -12,6 +12,6 @@ export declare abstract class BaseManager {
     checkFromCache(id: string, requester: unknown): Promise<SearchResult | undefined>;
     buildSearch(loadType: LoadType, tracks: UnresolvedTrack[] | undefined, error: string | undefined, name: string | undefined): SearchResult;
     autoResolveTrack(tracks: UnresolvedTrack[]): Promise<UnresolvedTrack[]>;
-    buildUnresolved(track: AppleMusicTrack): Omit<UnresolvedTrack, "resolve">;
+    buildUnresolved(track: AppleMusicTrack): Omit<UnresolvedTrack, 'resolve'>;
 }
 //# sourceMappingURL=BaseManager.d.ts.map

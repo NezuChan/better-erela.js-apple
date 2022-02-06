@@ -10,7 +10,7 @@ class BaseManager {
     async checkFromCache(id, requester) {
         if (this.cache.has(id) && this.resolver.plugin.options.cacheTrack) {
             const track = this.cache.get(id);
-            return this.buildSearch(track.name ? "PLAYLIST_LOADED" : "TRACK_LOADED", this.resolver.plugin.options.convertUnresolved ? await this.autoResolveTrack(track.tracks.map(item => erela_js_1.TrackUtils.buildUnresolved(this.buildUnresolved(item), requester))) : track.tracks.map(item => erela_js_1.TrackUtils.buildUnresolved(this.buildUnresolved(item), requester)), undefined, track.name);
+            return this.buildSearch(track.name ? 'PLAYLIST_LOADED' : 'TRACK_LOADED', this.resolver.plugin.options.convertUnresolved ? await this.autoResolveTrack(track.tracks.map((item) => erela_js_1.TrackUtils.buildUnresolved(this.buildUnresolved(item), requester))) : track.tracks.map((item) => erela_js_1.TrackUtils.buildUnresolved(this.buildUnresolved(item), requester)), undefined, track.name);
         }
     }
     buildSearch(loadType, tracks, error, name) {
@@ -18,7 +18,7 @@ class BaseManager {
             loadType,
             tracks: tracks ?? [],
             playlist: name ? { name, duration: tracks?.reduce((acc, cur) => acc + (cur.duration || 0), 0) ?? 0 } : undefined,
-            exception: error ? { message: error, severity: "COMMON" } : undefined
+            exception: error ? { message: error, severity: 'COMMON' } : undefined
         };
     }
     async autoResolveTrack(tracks) {
@@ -30,15 +30,15 @@ class BaseManager {
                 return null;
             }
             return track;
-        }).filter(track => Boolean(track)));
-        return resolvedTracks.filter(track => track !== null);
+        }).filter((track) => Boolean(track)));
+        return resolvedTracks.filter((track) => track !== null);
     }
     buildUnresolved(track) {
         return {
             uri: track.uri,
             title: track.name,
             author: track.artist,
-            duration: track.duration,
+            duration: track.duration
         };
     }
 }
