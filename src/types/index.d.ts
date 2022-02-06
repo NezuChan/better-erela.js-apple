@@ -1,7 +1,7 @@
 export interface AppleMusicOptions {
     cacheTrack?: boolean;
     maxCacheLifeTime?: number;
-    convertUnresolved?: boolean;   
+    convertUnresolved?: boolean;
 }
 
 export interface AppleMusicTrack {
