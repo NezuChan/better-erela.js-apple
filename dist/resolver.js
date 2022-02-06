@@ -14,6 +14,7 @@ class resolver {
         this.resolveManager = {
             "music-video": new index_1.MusicVideoManager(this),
             playlist: new index_1.PlaylistManager(this),
+            album: new index_1.AlbumManager(this),
         };
     }
     async fetchAccessToken() {

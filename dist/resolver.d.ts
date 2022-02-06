@@ -1,5 +1,5 @@
 import { AppleMusic } from "./Plugin";
-import { MusicVideoManager, PlaylistManager } from "./Manager/index";
+import { MusicVideoManager, PlaylistManager, AlbumManager } from "./Manager/index";
 export declare class resolver {
     plugin: AppleMusic;
     constructor(plugin: AppleMusic);
@@ -7,6 +7,7 @@ export declare class resolver {
     resolveManager: {
         "music-video": MusicVideoManager;
         playlist: PlaylistManager;
+        album: AlbumManager;
     };
     fetchAccessToken(): Promise<void>;
 }
