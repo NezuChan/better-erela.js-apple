@@ -1,7 +1,7 @@
 import AppleMusic from "../index";
 import { Manager } from "erela.js";
 
-test("Get apple playlist video ", (done) => {
+test("Get apple album video ", (done) => {
     const manager = new Manager({
         plugins: [
             new AppleMusic()
@@ -11,7 +11,7 @@ test("Get apple playlist video ", (done) => {
         }
     });
     
-    manager.search("https://music.apple.com/us/playlist/rick-astley-essentials/pl.504a9420747e43ec93e4faa999a8bef9").then(x => {
+    manager.search("https://music.apple.com/us/album/whenever-you-need-somebody/1558533900").then(x => {
         expect(x.loadType).toBe("PLAYLIST_LOADED");
         done();
     }).catch(e => expect(e).toBeUndefined());

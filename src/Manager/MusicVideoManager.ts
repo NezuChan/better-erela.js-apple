@@ -15,7 +15,7 @@ export class MusicVideoManager extends BaseManager {
                 return this.fetch(id, requester);
             }
             
-            const data = await response.json() as MusicVideoAPIREsponse;
+            const data = await response.json() as APIREsponse;
             if (data.errors && !data.data) return this.buildSearch("NO_MATCHES", undefined, "Could not find any suitable track(s), unexpected apple music response", undefined);
             const fileredData = data.data?.filter(x => x.type === "music-videos")[0]!;
             if (this.resolver.plugin.options.cacheTrack) this.cache.set(id, { tracks: [{ name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis * 1000 }] })
@@ -26,7 +26,7 @@ export class MusicVideoManager extends BaseManager {
     }
 }
 
-interface MusicVideoAPIREsponse {
+interface APIREsponse {
     errors?: unknown[];
     data?: {
         id: string;
