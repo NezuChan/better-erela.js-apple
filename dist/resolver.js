@@ -13,6 +13,7 @@ class resolver {
         this.token = undefined;
         this.resolveManager = {
             "music-video": new index_1.MusicVideoManager(this),
+            playlist: new index_1.PlaylistManager(this),
         };
     }
     async fetchAccessToken() {

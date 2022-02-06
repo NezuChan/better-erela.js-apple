@@ -19,6 +19,8 @@ class MusicVideoManager extends BaseManager_1.BaseManager {
             if (data.errors && !data.data)
                 return this.buildSearch("NO_MATCHES", undefined, "Could not find any suitable track(s), unexpected apple music response", undefined);
             const fileredData = data.data?.filter(x => x.type === "music-videos")[0];
+            if (this.resolver.plugin.options.cacheTrack)
+                this.cache.set(id, { tracks: [{ name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis * 1000 }] });
             return this.buildSearch("TRACK_LOADED", this.resolver.plugin.options.convertUnresolved ? await this.autoResolveTrack([erela_js_1.TrackUtils.buildUnresolved(this.buildUnresolved({ name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis * 1000 }), requester)]) : [erela_js_1.TrackUtils.buildUnresolved(this.buildUnresolved({ name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis * 1000 }), requester)], undefined, undefined);
         }
         catch (e) {

@@ -11,8 +11,9 @@ test("Get apple music video ", (done) => {
         }
     });
     
-    manager.search("https://music.apple.com/us/music-video/never-gonna-give-you-up/1559900284").then(x => {
-        expect(x.loadType).toBe("TRACK_LOADED");
+    manager.search("https://music.apple.com/us/playlist/rick-astley-essentials/pl.504a9420747e43ec93e4faa999a8bef9").then(x => {
+        console.log(x)
+        expect(x.loadType).toBe("PLAYLIST_LOADED");
         done();
     }).catch(e => expect(e).toBeUndefined());
 }, 30_000)

@@ -3,13 +3,14 @@ import { fetch } from "undici";
 import cheerio from "cheerio";
 import { AppleMusicMetaTagResponse } from "./types";
 
-import { MusicVideoManager } from "./Manager/index";
+import { MusicVideoManager, PlaylistManager } from "./Manager/index";
 
 export class resolver {
     public constructor(public plugin: AppleMusic) { }
     public token: string | undefined = undefined;
     public resolveManager = {
         "music-video": new MusicVideoManager(this),
+        playlist: new PlaylistManager(this),
     };
 
     public async fetchAccessToken() {
