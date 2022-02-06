@@ -5,3 +5,5 @@ src
 node_modules
 .gitattributes
 tsconfig.json
+babel.config.js
+jest.config.ts
