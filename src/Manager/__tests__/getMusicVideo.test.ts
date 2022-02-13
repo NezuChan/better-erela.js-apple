@@ -1,5 +1,5 @@
 import { Manager } from 'erela.js'
-import AppleMusic from '../index'
+import AppleMusic from '../../index'
 
 test('Get apple music video ', (done) => {
   const manager = new Manager({
