@@ -10,7 +10,7 @@ class MusicVideoManager extends BaseManager_1.BaseManager {
             await this.checkFromCache(id, requester);
             if (!this.resolver.token)
                 await this.resolver.fetchAccessToken();
-            const response = await (0, undici_1.fetch)(`https://amp-api.music.apple.com/v1/catalog/us/music-videos/${id}`, { headers: { Authorization: `Bearer ${this.resolver.token}` } });
+            const response = await (0, undici_1.fetch)(`${this.baseURL}/music-videos/${id}`, { headers: { Authorization: this.resolver.token ?? '' } });
             if (response.status === 401) {
                 await this.resolver.fetchAccessToken();
                 return this.fetch(id, requester);
@@ -22,16 +22,16 @@ class MusicVideoManager extends BaseManager_1.BaseManager {
             if (this.resolver.plugin.options.cacheTrack) {
                 this.cache.set(id, {
                     tracks: [{
-                            name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis * 1000
+                            name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis
                         }]
                 });
             }
             return this.buildSearch('TRACK_LOADED', this.resolver.plugin.options.convertUnresolved
                 ? await this.autoResolveTrack([erela_js_1.TrackUtils.buildUnresolved(this.buildUnresolved({
-                        name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis * 1000
+                        name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis
                     }), requester)])
                 : [erela_js_1.TrackUtils.buildUnresolved(this.buildUnresolved({
-                        name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis * 1000
+                        name: fileredData.attributes.name, uri: fileredData.attributes.url, artist: fileredData.attributes.artistName, duration: fileredData.attributes.durationInMillis
                     }), requester)], undefined, undefined);
         }
         catch (e) {
