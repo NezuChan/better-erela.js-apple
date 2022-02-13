@@ -38,6 +38,6 @@
   "license": "GPL-3.0",
   "name": "better-erela.js-apple",
   "main": "./dist",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A better version of erela.js-apple plugin"
 }
