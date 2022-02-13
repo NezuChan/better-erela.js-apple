@@ -10,7 +10,7 @@ class ArtistManager extends BaseManager_1.BaseManager {
             await this.checkFromCache(id, requester);
             if (!this.resolver.token)
                 await this.resolver.fetchAccessToken();
-            const response = await (0, undici_1.fetch)(`${this.baseURL}/artists/${id}?views=top-songs`, { headers: { Authorization: this.resolver.token ?? "" } });
+            const response = await (0, undici_1.fetch)(`${this.baseURL}/artists/${id}?views=top-songs`, { headers: { Authorization: this.resolver.token ?? '' } });
             if (response.status === 401) {
                 await this.resolver.fetchAccessToken();
                 return this.fetch(id, requester);
@@ -21,7 +21,7 @@ class ArtistManager extends BaseManager_1.BaseManager {
             const fileredData = data.data?.filter((x) => x.type === 'artists')[0].views['top-songs'].data.filter((x) => x.type === 'songs');
             while (data.data && data.data[0].views['top-songs'].next) {
                 const nextUrl = `${this.baseURL}/${data.data[0].views['top-songs'].next.split("/").slice(4).join("/")}`;
-                const nextResponse = await (0, undici_1.fetch)(nextUrl, { headers: { Authorization: this.resolver.token ?? "" } });
+                const nextResponse = await (0, undici_1.fetch)(nextUrl, { headers: { Authorization: this.resolver.token ?? '' } });
                 const nextData = await nextResponse.json();
                 data.data[0].views['top-songs'].next = nextData.next;
                 fileredData.push(...nextData.data.filter((x) => x.type === 'songs'));

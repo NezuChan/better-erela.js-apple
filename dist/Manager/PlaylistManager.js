@@ -10,7 +10,7 @@ class PlaylistManager extends BaseManager_1.BaseManager {
             await this.checkFromCache(id, requester);
             if (!this.resolver.token)
                 await this.resolver.fetchAccessToken();
-            const response = await (0, undici_1.fetch)(`${this.baseURL}/playlists/${id}`, { headers: { Authorization: this.resolver.token ?? "" } });
+            const response = await (0, undici_1.fetch)(`${this.baseURL}/playlists/${id}`, { headers: { Authorization: this.resolver.token ?? '' } });
             if (response.status === 401) {
                 await this.resolver.fetchAccessToken();
                 return this.fetch(id, requester);
