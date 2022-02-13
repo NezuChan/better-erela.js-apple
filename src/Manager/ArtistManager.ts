@@ -20,7 +20,7 @@ export class ArtistManager extends BaseManager {
       const fileredData = data.data?.filter((x) => x.type === 'artists')[0]!.views['top-songs'].data.filter((x) => x.type === 'songs')!
 
       while (data.data && data.data[0].views['top-songs'].next) {
-        const nextUrl = `${this.baseURL}/${data.data[0].views['top-songs'].next.split("/").slice(4).join("/")}`
+        const nextUrl = `${this.baseURL}/${data.data[0].views['top-songs'].next.split('/').slice(4).join('/')}`
 
         const nextResponse = await fetch(nextUrl, { headers: { Authorization: this.resolver.token ?? '' } })
         const nextData = await nextResponse.json() as AppleMusicPaginationTrack
