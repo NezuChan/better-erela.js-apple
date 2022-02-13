@@ -8,7 +8,7 @@ export class AlbumManager extends BaseManager {
       await this.checkFromCache(id, requester)!
       if (!this.resolver.token) await this.resolver.fetchAccessToken()
 
-      const response = await fetch(`${this.baseURL}/albums/${id}`, { headers: { Authorization: this.resolver.token } })
+      const response = await fetch(`${this.baseURL}/albums/${id}`, { headers: { Authorization: this.resolver.token ?? "" } })
 
       if (response.status === 401) {
         await this.resolver.fetchAccessToken()

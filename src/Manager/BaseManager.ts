@@ -5,7 +5,7 @@ import { resolver } from '../resolver'
 import { AppleMusicTrack } from '../types'
 
 export abstract class BaseManager {
-  public baseURL: "https://amp-api.music.apple.com/v1/catalog/us";
+  public baseURL = "https://amp-api.music.apple.com/v1/catalog/us";
   public cache: Map<string, { tracks: AppleMusicTrack[]; name?: string }> = new Map();
 
   public constructor (public resolver: resolver) { }
