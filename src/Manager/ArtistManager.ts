@@ -8,7 +8,7 @@ export class ArtistManager extends BaseManager {
       await this.checkFromCache(id, requester)!
       if (!this.resolver.token) await this.resolver.fetchAccessToken()
 
-      const response = await fetch(`${this.baseURL}/artists/${id}?views=top-songs`, { headers: { Authorization: this.resolver.token ?? "" } })
+      const response = await fetch(`${this.baseURL}/artists/${id}?views=top-songs`, { headers: { Authorization: this.resolver.token ?? '' } })
 
       if (response.status === 401) {
         await this.resolver.fetchAccessToken()
@@ -22,7 +22,7 @@ export class ArtistManager extends BaseManager {
       while (data.data && data.data[0].views['top-songs'].next) {
         const nextUrl = `${this.baseURL}/${data.data[0].views['top-songs'].next.split("/").slice(4).join("/")}`
 
-        const nextResponse = await fetch(nextUrl, { headers: { Authorization: this.resolver.token ?? "" } })
+        const nextResponse = await fetch(nextUrl, { headers: { Authorization: this.resolver.token ?? '' } })
         const nextData = await nextResponse.json() as AppleMusicPaginationTrack
         data.data[0].views['top-songs'].next = nextData.next
         fileredData.push(...nextData.data.filter((x) => x.type === 'songs'))
