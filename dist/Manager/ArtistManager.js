@@ -20,7 +20,7 @@ class ArtistManager extends BaseManager_1.BaseManager {
                 return this.buildSearch('NO_MATCHES', undefined, 'Could not find any suitable track(s), unexpected apple music response', undefined);
             const fileredData = data.data?.filter((x) => x.type === 'artists')[0].views['top-songs'].data.filter((x) => x.type === 'songs');
             while (data.data && data.data[0].views['top-songs'].next) {
-                const nextUrl = `${this.baseURL}/${data.data[0].views['top-songs'].next.split("/").slice(4).join("/")}`;
+                const nextUrl = `${this.baseURL}/${data.data[0].views['top-songs'].next.split('/').slice(4).join('/')}`;
                 const nextResponse = await (0, undici_1.fetch)(nextUrl, { headers: { Authorization: this.resolver.token ?? '' } });
                 const nextData = await nextResponse.json();
                 data.data[0].views['top-songs'].next = nextData.next;
