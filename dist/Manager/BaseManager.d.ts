@@ -3,6 +3,7 @@ import { resolver } from '../resolver';
 import { AppleMusicTrack } from '../types';
 export declare abstract class BaseManager {
     resolver: resolver;
+    baseURL: string;
     cache: Map<string, {
         tracks: AppleMusicTrack[];
         name?: string;
