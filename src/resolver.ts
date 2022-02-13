@@ -21,11 +21,11 @@ export class resolver {
 
   public async fetchAccessToken () {
     try {
-      const response = await fetch('https://music.apple.com/')
+      const response = await fetch('https://music.apple.com/us/browse')
       const textResponse = await response.text()
       const $ = cheerio.load(textResponse)
       const token = JSON.parse(decodeURIComponent($('meta[name=desktop-music-app/config/environment]').attr('content')!)) as AppleMusicMetaTagResponse
-      this.token = token.MEDIA_API.token
+      this.token = `Bearer ${token.MEDIA_API.token}`
     } catch (_e) {
       /* Do nothing. */
     }
