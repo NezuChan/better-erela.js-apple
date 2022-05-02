@@ -20,7 +20,7 @@ class resolver {
     }
     async fetchAccessToken() {
         try {
-            const response = await (0, undici_1.fetch)('https://music.apple.com/us/browse');
+            const response = await (0, undici_1.fetch)('https://music.apple.com');
             const textResponse = await response.text();
             const $ = cheerio_1.default.load(textResponse);
             const token = JSON.parse(decodeURIComponent($('meta[name=desktop-music-app/config/environment]').attr('content')));

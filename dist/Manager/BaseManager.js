@@ -5,7 +5,7 @@ const erela_js_1 = require("erela.js");
 class BaseManager {
     constructor(resolver) {
         this.resolver = resolver;
-        this.baseURL = 'https://amp-api.music.apple.com/v1/catalog/us';
+        this.baseURL = 'https://api.music.apple.com/v1/catalog/us';
         this.cache = new Map();
     }
     async checkFromCache(id, requester) {
