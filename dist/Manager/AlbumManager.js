@@ -7,10 +7,14 @@ const BaseManager_1 = require("./BaseManager");
 class AlbumManager extends BaseManager_1.BaseManager {
     async fetch(id, requester) {
         try {
-            await this.checkFromCache(id, requester);
+            if (this.cache.has(id)) {
+                const result = await this.checkFromCache(id, requester);
+                if (result)
+                    return result;
+            }
             if (!this.resolver.token)
                 await this.resolver.fetchAccessToken();
-            const response = await (0, undici_1.fetch)(`${this.baseURL}/albums/${id}`, { headers: { Authorization: this.resolver.token ?? '' } });
+            const response = await (0, undici_1.fetch)(`${this.baseURL}/albums/${id}`, { headers: { Authorization: this.resolver.token ?? '', referer: 'https://music.apple.com', origin: 'https://music.apple.com' } });
             if (response.status === 401) {
                 await this.resolver.fetchAccessToken();
                 return this.fetch(id, requester);
