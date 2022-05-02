@@ -5,10 +5,13 @@ import { BaseManager } from './BaseManager'
 export class ArtistManager extends BaseManager {
   public async fetch (id: string, requester: unknown): Promise<SearchResult> {
     try {
-      await this.checkFromCache(id, requester)!
+      if (this.cache.has(id)) {
+        const result = await this.checkFromCache(id, requester)
+        if (result) return result
+      }
       if (!this.resolver.token) await this.resolver.fetchAccessToken()
 
-      const response = await fetch(`${this.baseURL}/artists/${id}?views=top-songs`, { headers: { Authorization: this.resolver.token ?? '' } })
+      const response = await fetch(`${this.baseURL}/artists/${id}?views=top-songs`, { headers: { Authorization: this.resolver.token ?? '', referer: 'https://music.apple.com', origin: 'https://music.apple.com' } })
 
       if (response.status === 401) {
         await this.resolver.fetchAccessToken()
@@ -22,7 +25,7 @@ export class ArtistManager extends BaseManager {
       while (data.data && data.data[0].views['top-songs'].next) {
         const nextUrl = `${this.baseURL}/${data.data[0].views['top-songs'].next.split('/').slice(4).join('/')}`
 
-        const nextResponse = await fetch(nextUrl, { headers: { Authorization: this.resolver.token ?? '' } })
+        const nextResponse = await fetch(nextUrl, { headers: { Authorization: this.resolver.token ?? '', referer: 'https://music.apple.com', origin: 'https://music.apple.com' } })
         const nextData = await nextResponse.json() as AppleMusicPaginationTrack
         data.data[0].views['top-songs'].next = nextData.next
         fileredData.push(...nextData.data.filter((x) => x.type === 'songs'))
@@ -44,7 +47,6 @@ export class ArtistManager extends BaseManager {
           name: x.attributes.name, uri: x.attributes.url, artist: x.attributes.artistName, duration: x.attributes.durationInMillis
         }), requester)), undefined, data.data![0].attributes.name)
     } catch (e) {
-      console.log(e)
       return this.buildSearch('NO_MATCHES', undefined, 'Could not find any suitable track(s), unexpected apple music response', undefined)
     }
   }

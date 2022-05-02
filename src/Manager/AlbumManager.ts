@@ -5,10 +5,13 @@ import { BaseManager } from './BaseManager'
 export class AlbumManager extends BaseManager {
   public async fetch (id: string, requester: unknown): Promise<SearchResult> {
     try {
-      await this.checkFromCache(id, requester)!
+      if (this.cache.has(id)) {
+        const result = await this.checkFromCache(id, requester)
+        if (result) return result
+      }
       if (!this.resolver.token) await this.resolver.fetchAccessToken()
 
-      const response = await fetch(`${this.baseURL}/albums/${id}`, { headers: { Authorization: this.resolver.token ?? '' } })
+      const response = await fetch(`${this.baseURL}/albums/${id}`, { headers: { Authorization: this.resolver.token ?? '', referer: 'https://music.apple.com', origin: 'https://music.apple.com' } })
 
       if (response.status === 401) {
         await this.resolver.fetchAccessToken()
