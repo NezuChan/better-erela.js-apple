@@ -16,8 +16,8 @@
     "eslint-plugin-promise": "5.2.0",
     "jest": "28.1.0",
     "rimraf": "3.0.2",
-    "ts-node": "10.8.0",
-    "typescript": "4.7.2"
+    "ts-node": "10.8.1",
+    "typescript": "4.7.3"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.11",
