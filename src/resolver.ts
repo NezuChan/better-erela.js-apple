@@ -1,6 +1,6 @@
 import { fetch } from 'undici'
 import cheerio from 'cheerio'
-import { AppleMusic } from './Plugin'
+import { AppleMusic } from './plugin'
 import { AppleMusicMetaTagResponse } from './types'
 
 import {
