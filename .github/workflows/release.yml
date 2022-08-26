@@ -21,7 +21,7 @@ jobs:
         run: yarn add erela.js
       - name: Compile source
         run: yarn compile
-      - name: Compile source
+      - name: Remove ErelaJS
         run: yarn remove erela.js
       - name: Publish source
         run: |
