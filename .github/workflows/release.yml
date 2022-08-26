@@ -19,6 +19,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Compile source
         run: yarn compile
+      - name: Compile source
+        run: yarn remove erela.js
       - name: Publish source
         run: |
           npm publish --access public || true
