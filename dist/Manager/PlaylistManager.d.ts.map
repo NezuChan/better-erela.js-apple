@@ -1,1 +1,0 @@
-{"version":3,"file":"PlaylistManager.d.ts","sourceRoot":"","sources":["../../src/Manager/PlaylistManager.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAc,MAAM,UAAU,CAAA;AAEnD,OAAO,EAAE,WAAW,EAAE,MAAM,eAAe,CAAA;AAE3C,qBAAa,eAAgB,SAAQ,WAAW;IACjC,KAAK,CAAE,EAAE,EAAE,MAAM,EAAE,SAAS,EAAE,OAAO,GAAG,OAAO,CAAC,YAAY,CAAC;CAqC3E"}

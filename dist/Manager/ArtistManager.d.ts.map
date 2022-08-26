@@ -1,1 +1,0 @@
-{"version":3,"file":"ArtistManager.d.ts","sourceRoot":"","sources":["../../src/Manager/ArtistManager.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAc,MAAM,UAAU,CAAA;AAEnD,OAAO,EAAE,WAAW,EAAE,MAAM,eAAe,CAAA;AAE3C,qBAAa,aAAc,SAAQ,WAAW;IAC/B,KAAK,CAAE,EAAE,EAAE,MAAM,EAAE,SAAS,EAAE,OAAO,GAAG,OAAO,CAAC,YAAY,CAAC;CA+C3E"}
